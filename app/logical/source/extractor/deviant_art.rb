@@ -38,11 +38,11 @@ module Source
       def extract_largest(src)
         if src =~ %r{\Ahttps://images-wixmp-}
           sample, separator, * = src.partition("/v1/")
-          if separator.present?
-            src.gsub(/,q_\d+,strp\/([-_a-z0-9]+)\.jpg/, '/\1.png')
-          elsif deviation_id && deviation_id.to_i <= 790_677_560 && src !~ /\.gif\?/
+          if deviation_id && deviation_id.to_i <= 790_677_560 && src !~ /\.gif\?/
             src = src.sub(%r{(/f/[a-f0-9-]+/[a-f0-9-]+)}, '/intermediary\1')
             src.sub(%r{/v1/(fit|fill)/.*\z}i, "")
+          elsif separator.present?
+            src.gsub(/,q_\d+,strp\/([-_a-z0-9]+)\.jpg/, '/\1.png')
           else
             src
           end
