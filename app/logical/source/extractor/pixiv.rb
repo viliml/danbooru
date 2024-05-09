@@ -145,6 +145,11 @@ module Source
           tags += [["pixiv_commission", "https://www.pixiv.net/tags/依頼絵/#{tag_type}"]]
         end
 
+        if api_illust["isOriginal"]
+          # XXX There's no way to search for posts with the original flag on Pixiv. The "オリジナル" ("original") tag is the closest equivalent.
+          tags += [["original", "https://www.pixiv.net/tags/オリジナル/#{tag_type}"]]
+        end
+
         tags
       end
 
